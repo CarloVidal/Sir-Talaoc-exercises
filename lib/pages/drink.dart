@@ -1,11 +1,11 @@
-class Drinkkinds{
+class Recipe {
   String name;
   String brand;
-  int percentage;
+  String percentage;
 
-  Drinkkinds({
+  Recipe ({
     required this.name,
     required this.brand,
     required this.percentage,
-});
+  });
 }

@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
-import 'pages/Listitem.dart';
+
+
+import 'pages/dashboard.dart';
+import 'pages/listitem.dart';
+import 'pages/add_drink.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: ListItem(), // <- Capitalized class name
-  ));
+  runApp(
+    MaterialApp(
+      routes: {
+        '/': (context) => const ListItem(),
+        '/list': (context) =>  ListItem(),
+        '/add': (context) => const Addrecipe(),
+      },
+    ),
+  );
 }
