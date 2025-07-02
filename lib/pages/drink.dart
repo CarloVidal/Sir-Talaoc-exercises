@@ -1,7 +1,7 @@
 class Recipe {
   String name;
   String brand;
-  String percentage;
+  int  percentage;
 
   Recipe ({
     required this.name,

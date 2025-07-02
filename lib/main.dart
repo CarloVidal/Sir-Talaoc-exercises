@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-import 'pages/dashboard.dart';
 import 'pages/listitem.dart';
 import 'pages/add_drink.dart';
 
@@ -11,7 +9,7 @@ void main() {
       routes: {
         '/': (context) => const ListItem(),
         '/list': (context) =>  ListItem(),
-        '/add': (context) => const Addrecipe(),
+        '/add': (context) => const DrinkKinds(),
       },
     ),
   );

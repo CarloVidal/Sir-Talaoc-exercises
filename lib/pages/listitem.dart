@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:recipeapp/pages/drink.dart';
-import 'package:recipeapp/pages/item_card.dart';
-import 'package:untitled/pages/add_drink.dart';
+import 'package:untitled/pages/drink.dart';
+import 'package:untitled/pages/Item_card.dart';
 
 class ListItem extends StatefulWidget {
   const ListItem({super.key});
@@ -11,32 +10,21 @@ class ListItem extends StatefulWidget {
 }
 
 class _ListItemState extends State<ListItem> {
-
-  List<Drinkkinds> drink = [
-    Drinkkinds(
-      name: 'Pasta',
-      brand: 'Delicious pasta with tomato sauce',
-      percentage: '300',
+  List<Recipe> drink = [
+    Recipe(
+      name: 'FUNDADOR LIGHT',
+      brand: 'FUNDADOR',
+      percentage: 40,
     ),
-    Drinkkinds(
-      name: 'Salad',
-      brand: 'Fresh salad with mixed greens',
-      percentage: '150',
+    Recipe(
+      name: 'GSM BLUE',
+      brand: 'GINEBRA',
+      percentage: 30,
     ),
-    Drinkkinds(
-      name: 'Pizza',
-      brand: 'Cheesy pizza with pepperoni',
-      percentage: '400',
-    ),
-    Drink(
-      name: 'Burger',
-      brand: 'Juicy burger with lettuce and tomato',
-      percentage: '500',
-    ),
-    Drinkkinds(
-      name: 'Sushi',
-      brand: 'Sushi rolls with fresh fish',
-      percentage: '250',
+    Recipe(
+      name: 'ALFONSO LIGHT',
+      brand: 'ALFONSO',
+      percentage: 25,
     ),
   ];
 
@@ -44,23 +32,32 @@ class _ListItemState extends State<ListItem> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('List items'),
-        backgroundColor: Colors.green,
+        title: const Text(
+          'DRINK KINDS',
+          style: TextStyle(
+            fontWeight: FontWeight.bold, // ✅ Bold text
+            fontSize: 20,                // Optional: slightly larger
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.red, // ✅ Red AppBar
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
         child: GridView.count(
-          crossAxisCount: 2, // 2 columns
+          crossAxisCount: 2,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
-          children: recipes.map((recipe) => Itemcard(recipe: recipe)).toList(),
+          children: drink
+              .map((drinkItem) => ItemCard(drink: drinkItem))
+              .toList(),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, '/add');
         },
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blue,
         child: const Icon(
           Icons.add,
           color: Colors.white,

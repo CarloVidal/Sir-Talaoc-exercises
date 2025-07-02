@@ -1,200 +1,140 @@
 import 'package:flutter/material.dart';
 
-class Drinkkinds extends StatefulWidget {
+class DrinkKinds extends StatefulWidget {
   const DrinkKinds({super.key});
 
   @override
-  State<Drinkkinds> createState() => _DrinkKindseState();
+  State<DrinkKinds> createState() => _DrinkKindsState();
 }
 
-class _DrinkKindseState extends State<Drinkkinds> {
-
+class _DrinkKindsState extends State<DrinkKinds> {
   final _formKey = GlobalKey<FormState>();
+
   String _name = '';
   String _brand = '';
   String _percentage = '';
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Recipe'),
-        backgroundColor: Colors.green,
+        title: const Text(
+          '',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.red,
       ),
-      body: Container(
-        margin: const EdgeInsets.all(20.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20.0),
         child: Form(
           key: _formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch, // Makes fields full width
             children: [
-              const Text('Add recipe'),
-              Container(
-                margin: const EdgeInsets.only(top: 20.0, bottom: 10.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Recipe Name',
-                    labelStyle: TextStyle(
-                      color: Colors.green,
-                      fontSize: 16.0,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(
-                        color: Colors.green,
-                        width: 2.0,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(
-                        color: Colors.green,
-                        width: 0.9,
-                      ),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(
-                        color: Colors.red,
-                        width: 2.0,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(255, 0, 126, 4),
-                        width: 2.0,
-                      ),
-                    ),
-                  ),
-                  validator: (value){
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a recipe name';
-                    }
-                    return null;
-                  },
-                ),
+              const Text(
+                'ADD DRINKS',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Description',
-                    labelStyle: TextStyle(
-                      color: Colors.green,
-                      fontSize: 16.0,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(
-                        color: Colors.green,
-                        width: 2.0,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(
-                        color: Colors.green,
-                        width: 0.5,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(255, 0, 126, 4),
-                        width: 2.0,
-                      ),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter a description';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Calories',
-                    labelStyle: TextStyle(
-                      color: Colors.green,
-                      fontSize: 16.0,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(
-                        color: Colors.green,
-                        width: 2.0,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(
-                        color: Colors.green,
-                        width: 0.5,
-                        style: BorderStyle.solid,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(255, 0, 126, 4),
-                        width: 2.0,
-                      ),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter the calories';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    FilledButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          // Process the data.
-                          print('Recipe Name: ${_name}');
-                        }
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all<Color>(
-                          Colors.green,
-                        ),
-                        padding: WidgetStateProperty.all<EdgeInsets>(
-                          const EdgeInsets.symmetric(vertical: 15.0),
-                        ),
-                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                      ),
-                      child: Text(
-                        'Add Recipe',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+              const SizedBox(height: 20),
 
-                    )
-                  ],
+              // Drinks Name
+              TextFormField(
+                decoration: _inputDecoration('Drinks Name'),
+                onChanged: (value) => _name = value,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a Drinks name';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 15),
+
+              // Brand
+              TextFormField(
+                decoration: _inputDecoration('Brand'),
+                onChanged: (value) => _brand = value,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a Brand';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 15),
+
+              // Percentage
+              TextFormField(
+                decoration: _inputDecoration('Percentage'),
+                keyboardType: TextInputType.number,
+                onChanged: (value) => _percentage = value,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter the Percentage';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 25),
+
+              // Submit Button
+              FilledButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    print('Drinks Name: $_name');
+                    print('Brand: $_brand');
+                    print('Percentage: $_percentage');
+                  }
+                },
+                style: FilledButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  padding: const EdgeInsets.symmetric(vertical: 15.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                ),
+                child: const Text(
+                  'ADD DRINK',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  InputDecoration _inputDecoration(String label) {
+    return InputDecoration(
+      labelText: label,
+      labelStyle: const TextStyle(
+        color: Colors.black,
+        fontSize: 16.0,
+      ),
+      border: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      ),
+      enabledBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.black, width: 0.9),
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Color.fromARGB(255, 10, 160, 227), width: 2.0),
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      ),
+      errorBorder: const OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.red, width: 2.0),
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
       ),
     );
   }
