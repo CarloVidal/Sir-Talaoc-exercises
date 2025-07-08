@@ -1,35 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
+import 'package:world_time_app/services/world_time.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loading extends StatefulWidget {
-  const Loading({super.key});
-
   @override
-  State<Loading> createState() => _LoadingState();
+  _LoadingState createState() => _LoadingState();
 }
 
 class _LoadingState extends State<Loading> {
 
-  void getData() async {
-
-    Response response = await get(Uri.parse('https://jsonplaceholder.typicode.com/todos/1'));
-    Map data = jsonDecode (response.body);
-    print(data);
-    print(data['title']);
-
+  void setupWorldTime() async {
+    WorldTime instance = WorldTime(location: 'Berlin', flag: 'germany.png', url: 'Europe/Berlin');
+    await instance.getTime();
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'location': instance.location,
+      'flag': instance.flag,
+      'time': instance.time,
+      'isDaytime': instance.isDaytime
+    });
   }
 
   @override
   void initState() {
     super.initState();
-    getData();
+    setupWorldTime();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('loading screen'),
+      backgroundColor: Colors.blue[900],
+      body: Center(
+        child: SpinKitFadingCube(
+          color: Colors.white,
+          size: 50.0,
+        )
+      )
     );
+  }
+}
+
+class WorldTime {
+  String location;
+  String time;
+  String flag;
+  String url;
+  bool isDaytime;
+
+  WorldTime({required this.location, required this.flag, required this.url});
+
+  Future<void> getTime() async {
+    try {
+      // Simulate network request
+      await Future.delayed(Duration(seconds: 3));
+
+      // Set the time based on the location
+      if (location == 'Berlin') {
+        isDaytime = true;
+        time = '10:00 AM';
+      } else {
+        isDaytime = false;
+        time = '10:00 PM';
+      }
+    } catch (e) {
+      print('Caught error: $e');
+      time = 'Could not get time data';
+    }
   }
 }
